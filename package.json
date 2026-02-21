@@ -1,0 +1,23 @@
+{
+  "name": "invisible-tuner",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "sim": "evenhub-simulator http://localhost:5173",
+    "dev:sim": "vite & sleep 1 && evenhub-simulator http://localhost:5173",
+    "build": "tsc && vite build",
+    "wasm:build": "cd wasm-tuner && wasm-pack build --target web --out-dir ../wasm-tuner-pkg"
+  },
+  "dependencies": {
+    "@evenrealities/even_hub_sdk": "^0.0.7"
+  },
+  "devDependencies": {
+    "@evenrealities/evenhub-simulator": "^0.4.1",
+    "typescript": "~5.7.3",
+    "vite": "^6.0.0",
+    "vite-plugin-top-level-await": "^1.4.0",
+    "vite-plugin-wasm": "^3.0.0"
+  }
+}
