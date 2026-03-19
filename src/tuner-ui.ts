@@ -1,4 +1,3 @@
-const GAUGE = "--+--+--|--+--+--";
 const NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
 function nearestNote(freq: number): { name: string; octave: number; cents: number; freq: number } {
@@ -16,21 +15,25 @@ function centsIndicator(cents: number): string {
   const offset = Math.round((cents / 50) * half);
   const clamped = Math.max(-half, Math.min(half, offset));
 
-  let arrow: string;
   if (clamped === 0) {
-    arrow = "-".repeat(half) + "|" + "-".repeat(half);
-  } else if (clamped < 0) {
-    arrow = "-".repeat(half + clamped) + ">".repeat(-clamped) + "|" + "-".repeat(half);
-  } else {
-    arrow = "-".repeat(half) + "|" + "<".repeat(clamped) + "-".repeat(half - clamped);
+    return "━".repeat(half) + "●" + "━".repeat(half);
   }
 
-  return GAUGE + "\n" + arrow;
+  const chars: string[] = new Array(half * 2 + 1).fill("━");
+  chars[half] = "┃";
+
+  if (clamped < 0) {
+    for (let i = half + clamped; i < half; i++) chars[i] = "█";
+  } else {
+    for (let i = half + 1; i <= half + clamped; i++) chars[i] = "█";
+  }
+
+  return chars.join("");
 }
 
 export function renderTunerDisplay(freq: number, confidence: number): string {
   if (confidence < 0.5 || freq < 20 || freq > 5000) {
-    return `---\n${GAUGE}`;
+    return "───\n" + "━".repeat(8) + "┃" + "━".repeat(8);
   }
 
   const note = nearestNote(freq);
