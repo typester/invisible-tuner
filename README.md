@@ -6,10 +6,6 @@ A chromatic tuner for [Even Realities](https://www.evenrealities.com/) smart gla
   <img src="screenshot.jpg" alt="Invisible Tuner running in the Even Hub simulator" width="600" />
 </p>
 
-## Note
-
-My G2 hasn't arrived yet, so this has not been tested on actual hardware. If anyone could give it a try, that would be greatly appreciated!
-
 ## Prerequisites
 
 - Node.js >= 20

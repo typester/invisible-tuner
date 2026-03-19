@@ -29,9 +29,25 @@ fn pcm_i16_to_f32(pcm_bytes: &[u8]) -> Vec<f32> {
         .collect()
 }
 
+fn rms(samples: &[f32]) -> f32 {
+    if samples.is_empty() {
+        return 0.0;
+    }
+    let sum_sq: f32 = samples.iter().map(|&s| s * s).sum();
+    (sum_sq / samples.len() as f32).sqrt()
+}
+
 fn yin_detect(samples: &[f32], sample_rate: u32) -> PitchResult {
     let len = samples.len();
     if len < 2 {
+        return PitchResult {
+            frequency: 0.0,
+            confidence: 0.0,
+        };
+    }
+
+    // Ignore quiet signals (RMS threshold ~= -54 dB)
+    if rms(samples) < 0.002 {
         return PitchResult {
             frequency: 0.0,
             confidence: 0.0,
