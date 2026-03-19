@@ -2,3 +2,4 @@ node_modules/
 dist/
 wasm-tuner-pkg/
 wasm-tuner/target/
+*.ehpk

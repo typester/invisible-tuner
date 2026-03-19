@@ -8,12 +8,14 @@
     "sim": "evenhub-simulator http://localhost:5173",
     "dev:sim": "vite & sleep 1 && evenhub-simulator http://localhost:5173",
     "build": "tsc && vite build",
-    "wasm:build": "cd wasm-tuner && wasm-pack build --target web --out-dir ../wasm-tuner-pkg"
+    "wasm:build": "cd wasm-tuner && wasm-pack build --target web --out-dir ../wasm-tuner-pkg",
+    "pack": "tsc && vite build --base=./ && evenhub pack app.json dist -o invisible-tuner.ehpk"
   },
   "dependencies": {
     "@evenrealities/even_hub_sdk": "^0.0.7"
   },
   "devDependencies": {
+    "@evenrealities/evenhub-cli": "^0.1.8",
     "@evenrealities/evenhub-simulator": "^0.4.1",
     "typescript": "~5.7.3",
     "vite": "^6.0.0",

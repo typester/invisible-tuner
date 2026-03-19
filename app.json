@@ -1,0 +1,19 @@
+{
+  "package_id": "com.typester.invisibletuner",
+  "edition": "202601",
+  "name": "Invisible Tuner",
+  "version": "0.0.1",
+  "min_app_version": "0.1.0",
+  "min_sdk_version": "0.1.0",
+  "tagline": "Chromatic tuner for your glasses",
+  "description": "A chromatic tuner that runs on Even Realities G2 smart glasses. Detects pitch via the built-in microphone and displays note, frequency, and cent deviation on the HUD.",
+  "author": "typester",
+  "entrypoint": "index.html",
+  "permissions": [
+    {
+      "name": "g2-microphone",
+      "desc": "Used to capture audio for pitch detection"
+    }
+  ],
+  "supported_languages": ["en"]
+}
